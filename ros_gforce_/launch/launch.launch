@@ -1,0 +1,3 @@
+<launch>
+        <node pkg="ros_gforce" type="gforce_pub.py" name="gforce_pub"/>
+</launch>

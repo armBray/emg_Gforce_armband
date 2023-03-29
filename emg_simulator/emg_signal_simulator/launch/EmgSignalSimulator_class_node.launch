@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="rate" default="10.0"/>
+  <arg name="topic_publisher" default="/sensorsdata"/>
+  <node name="EmgSignalSimulator_class_node" pkg="emg_signal_simulator" type="EmgSignalSimulator_class_node" args="$(arg rate) $(arg topic_publisher)" output="screen"/>
+</launch>
