@@ -1,0 +1,5 @@
+<launch>
+        <node pkg="ros_gforce" name="gf_pub_node" type="prova_pub.py" />
+        <node pkg="ros_gforce" name="emg_filter_calibration" type="emg_signal_processing_full_channel_notch_high_maslide.py" />
+        <node name = "PlotJuggler" pkg = "plotjuggler" type = "plotjuggler" args="--layout $(find ros_gforce)/config/Emg_cc_level_gc.xml" />
+</launch>

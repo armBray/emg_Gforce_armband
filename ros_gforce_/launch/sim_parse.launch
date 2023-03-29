@@ -1,0 +1,4 @@
+<launch>
+        <node pkg="ros_gforce" name="parse1" type="pub_simulator_x_parse.py" />
+        <node pkg="ros_gforce" name="parse2" type="pub_simulator_x_parse2.py" />
+</launch>
