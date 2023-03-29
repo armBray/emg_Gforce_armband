@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- Load Params -->
+    <rosparam command="load" file="$(find emg_state_machine)/config/settings.yaml" />
+
+    <!-- Start Nodes -->
+    <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py"/>
+    <!-- <node name="emg_state_machine" pkg="emg_state_machine" type="emg_state_machine_pub.py" output="screen"/> -->
+    <!-- <node name="emg_state_machine" pkg="emg_state_machine" type="emg_state_machine_pub_Header.py" output="screen"/> -->
+    <node name="emg_state_machine" pkg="emg_state_machine" type="emg_state_machine_pub_Header_2.py" output="screen"/>
+
+</launch>
