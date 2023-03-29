@@ -1,0 +1,20 @@
+*** EULER ANGLE ***
+- First Header  31 bytes ---> 4 255 6   127 6   0   146 253 0   4   255 10  27  5   0   0   0   4   30  0   0   79  4   255 6   19  5   0   0   0   0   
+- Normal Header 13 bytes ---> 4 255 22  7   5   0   0   0   16  34  0   132 incr
+- Data          4  bytes (float)
+
+*** QUATERNION ***
+- First Header  31 bytes ---> 4 255 6   127 6   0   146 253 0   4   255 10  27  5   0   0   0   4   30  0   0   79  4   255 6   19  5   0   0   0   0   
+- Normal Header 13 bytes ---> 4 255 26  27  5   0   0   0   20  34  0   133 incr
+- Data          4  bytes (float)
+
+*** ROTATION MATRIX ***
+- First Header  62 bytes ---> 4 255 6   127 6   0   130 253 0   4   255 8   3   5   0   0   0   2   247 0   4   255 6   127 6   0   146 253 0   4   255 10  27  50   0   0   4   30  0   0   79  4   255 6   19  5   0   0   0   0    
+- Normal Header 13 bytes ---> 4 255 46  27  5   0   0   0   40  34  0   134 incr
+- Data          9  bytes (long)
+
+*** EMG ***
+- First Header  22 bytes ---> 4 255 6   127 6   0   182 253 0   4   255 10  27  5   0   0   0   4   30  0   0   79
+- Normal Header 13 bytes ---> 4 255 138 27  5   0   0   0   132 34  0   136 incr
+- Data          128  bytes (int)
+
