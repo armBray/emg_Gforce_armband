@@ -1,0 +1,290 @@
+# ROBOUTON
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+
+#####################
+###	FULL terminal	###
+#####################
+### Terminal 1
+roscore
+
+### Terminal 2
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce prova_pub.py
+
+### Terminal 3
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce emg_signal_processing_full_channel_notch_high_maslide.py 
+
+### Terminal 4
+rosrun plotjuggler plotjuggler
+
+### Terminal 5
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rostopic echo -p /datas3 > 0_Armando.csv
+CRTL + C
+	Terminal 5
+	Terminal 3
+rosrun ros_gforce import_file_x_plot.py 0_Armando
+	select range
+	close figures
+rosrun ros_gforce import_file_x_matrix.py 0_Armando
+rosrun ros_gforce emg_signal_processing_full_channel_notch_high_maslide_Online.py 0_Armando
+
+### Terminal 6
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+
+### Terminal 7
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+roslaunch emg_state_machine emg_state_machine.launch 
+
+
+
+
+##########################
+###	REDUCED terminal	###
+##########################
+### Terminal 1
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce calibration.launch
+
+### Terminal 2
+rosrun plotjuggler plotjuggler
+
+### Terminal 3
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rostopic echo -p /datas3 > ~/Escritorio/armband_ws/src/ros_gforce/csv/0_Armando.csv
+CRTL + C
+	Terminal 2
+	Terminal 1
+rosrun ros_gforce import_file_x_plot.py 0_Armando
+	select range
+	close figures
+rosrun ros_gforce import_file_x_matrix.py 0_Armando
+
+### Terminal 4
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce prova_pub.py
+
+### Terminal 5
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce emg_signal_processing_full_channel_notch_high_maslide_Online.py 0_Armando
+
+### Terminal 6
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+
+### Terminal 7
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+roslaunch emg_state_machine emg_state_machine.launch 
+
+
+##########################
+###	REDUCED 2 terminal	###
+##########################
+### Terminal 1
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce calibration.launch
+
+### Terminal 2
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rostopic echo -p /datas3 > ~/Escritorio/armband_ws/src/ros_gforce/csv/0_Armando.csv
+CRTL + C
+	Terminal 2
+	Terminal 1
+rosrun ros_gforce import_file_x_plot.py 0_Armando
+	select range
+	close figures
+rosrun ros_gforce import_file_x_matrix.py 0_Armando
+
+### Terminal 3
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce prova_pub.py
+
+### Terminal 4
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun plotjuggler plotjuggler
+
+### Terminal 5
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce emg_signal_processing_full_channel_notch_high_maslide_Online_Header.py 0_Armando
+
+### Terminal 6
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+
+### Terminal 7
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+rosrun emg_state_machine emg_state_machine_pub_Header.py
+
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+roslaunch emg_state_machine emg_state_machine.launch (make sure file not commented)
+
+### Terminal 8
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rosrun ros_gforce parse_from_realdata.py
+
+
+##########################
+###	REDUCED 2 terminal	###
+##########################
+### Terminal 1
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce calibration.launch
+
+### Terminal 2
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rostopic echo -p /datas3 > ~/Escritorio/armband_ws/src/ros_gforce/csv/0_Armando.csv
+CRTL + C
+	Terminal 2
+	Terminal 1
+rosrun ros_gforce import_file_x_plot.py 0_Armando
+	select range
+	close figures
+rosrun ros_gforce import_file_x_matrix.py 0_Armando
+
+### Terminal 3
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce online.launch serial:=/dev/ttyACM0 matrix_file:=0_Armando
+
+### Terminal 4
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+roslaunch emg_state_machine emg_state_machine.launch (make sure file not commented)
+
+#####################
+###	SIMULATION	###
+#####################
+export ROS_MASTER_URI=http://127.0.0.1:11311
+export ROS_IP=127.0.0.1
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+rocker --x11 --privileged --network=host --oyr-run-arg " --name remodel_docker -v /home/110682@TRI.LAN/remodel/remodel_shared:/home/remodel/remodel_shared " -- remodel_app:melodic bash -c "'roslaunch remodel_app remodel_app.launch use_sim:=true docker:=true skill_manager:=true collision_detector:=true ui:=true cad:=true joystick:=false'"
+roslaunch emg_manager emg_manager.launch
+rostopic pub /rbrobout/emg_manager/execute_emg_multi_traj_by_arm_action/goal emg_manager_msgs/ExecuteEmgMultiTrajByArmActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  id: '456'
+  timeout: 0.0
+  n_traj: '2'
+  arm: 'left_arm'
+  vel: 'Mid'
+  tool_tag: 'left_wsg_50'
+  traj_id: ['14','15']
+  downsampling_translational_threshold: [0.025,0.025,0.025]
+  downsampling_rotational_threshold: [0.025,0.025,0.025]
+  ball_translational_threshold: [0.025,0.025,0.025]
+  ball_rotational_threshold: [0.025,0.025,0.025]" 
+
+
+###############
+###	REAL	###
+###############
+
+export ROS_MASTER_URI=http://127.0.0.1:11311
+export ROS_IP=127.0.0.1
+
+### Terminal 1
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce calibration.launch
+
+### Terminal 2
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+rostopic echo -p /datas3 > ~/Escritorio/armband_ws/src/ros_gforce/csv/0_Armando.csv
+CRTL + C
+	Terminal 2
+	Terminal 1
+rosrun ros_gforce import_file_x_plot.py 0_Armando
+	select range
+	close figures
+rosrun ros_gforce import_file_x_matrix_2.py 0_Armando
+
+### Terminal 3
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/Escritorio/armband_ws
+source devel/setup.bash
+roslaunch ros_gforce online.launch serial:=/dev/ttyACM0 matrix_file:=0_Armando
+
+### Terminal 4
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+cd ~/ros/noetic/remodel_ws/
+source devel/setup.bash
+roslaunch emg_state_machine emg_state_machine.launch (make sure file not commented)
+
+### Terminal 5
+export ROS_MASTER_URI=http://192.168.0.200:11311
+export ROS_IP=192.168.0.101
+rostopic pub /rbrobout/emg_manager/execute_emg_multi_traj_by_arm_action/goal emg_manager_msgs/ExecuteEmgMultiTrajByArmActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  id: '456'
+  timeout: 0.0
+  n_traj: '2'
+  arm: 'left_arm'
+  vel: 'Mid'
+  tool_tag: 'left_wsg_50'
+  traj_id: ['18','19']
+  downsampling_translational_threshold: [0.01,0.01,0.01]
+  downsampling_rotational_threshold: [0.01,0.01,0.01]
+  ball_translational_threshold: [0.5,0.5,0.5]
+  ball_rotational_threshold: [0.5,0.5,0.5]" 
